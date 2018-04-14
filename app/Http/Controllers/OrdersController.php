@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateOrdersRequest;
 use App\Http\Requests\UpdateOrdersRequest;
+use App\Models\Orders;
+use App\Models\Services;
 use App\Repositories\OrdersRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -44,7 +47,9 @@ class OrdersController extends AppBaseController
      */
     public function create()
     {
-        return view('orders.create');
+        $services = Services::all(['id','price','format']);
+        $json = $services;
+        return view('orders.create',compact('services','json'));
     }
     /**
      * Show user Orders.
@@ -71,12 +76,23 @@ class OrdersController extends AppBaseController
     public function store(CreateOrdersRequest $request)
     {
         $input = $request->all();
+        $orders = '';
+        foreach (json_decode($input['jsonOrders']) as $key => $value){
+            $orders .= $key . '|' .$value->quantity .',';
+        }
+        $orders = rtrim($orders,",");
 
-        $orders = $this->ordersRepository->create($input);
+        $order = new Orders();
+        $order->u_id = Auth::user()->id;
+        $order->price = (int) $input['summa'];
+        $order->services = $orders;
+        $order->status = 0;
 
+      $orders = $this->ordersRepository->create($order->toArray());
         Flash::success('Orders saved successfully.');
 
         return redirect(route('orders.index'));
+    //  return $orders . '   ' . $u_id;
     }
 
     /**

@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <title>ФОТО САЛОН-МАГАЗИН</title>
-
+    <link rel="icon" href="{{asset('images/camera.png')}}">
     <!-- Bootstrap core CSS -->
     <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -471,7 +471,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Фото салон</a>
+        <a class="navbar-brand js-scroll-trigger" href="{{route('index')}}">Фото салон</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -490,7 +490,7 @@
                     <a class="nav-link js-scroll-trigger" href="#contact">Контакти</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#order">Замовлення</a>
+                    <a class="nav-link js-scroll-trigger" href="{{Auth::check() ? route('orders.user') : route('login')}}">Замовлення</a>
                 </li>
                 <!--
             @if (Route::has('login'))
@@ -516,7 +516,7 @@
 <header id="main" class="bg-primary text-white">
     <div class="container text-center">
         <h1>«ФОТО САЛОН-МАГАЗИН»</h1>
-        <a href="#" class="btn btn-outline-warning waves-effect">Замовлення</a>
+        <a href="{{Auth::check() ? route('orders.user') : route('login')}}" class="btn btn-outline-warning waves-effect">Замовлення</a>
     </div>
 </header>
 
@@ -536,18 +536,6 @@
         </div>
     </div>
 </section>
-
-<section id="services" class="bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <h2>Services we offer</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section id="gallery" style="margin-bottom: -80px">
     <div class="container">
         <div class="row">
@@ -609,10 +597,10 @@
                 <div class="col-lg-3 mx-auto">
                     <p><i class="far fa-map" style="font-size:20px;"></i>  ул. А.Кошица 10/21, Ужгород</p>
                 </div>
-            <div class="col-lg-2 mx-auto">
+            <div class="col-lg-3 mx-auto">
                 <p><i class="fas fa-phone" style="font-size:20px;"></i>  +380969604521</p>
             </div>
-            <div class="col-lg-2 mx-auto">
+            <div class="col-lg-3 mx-auto">
                 <p><i class="far fa-envelope" style="font-size:20px;"></i>  foto-salon@ukr.net</p>
             </div>
         </div>

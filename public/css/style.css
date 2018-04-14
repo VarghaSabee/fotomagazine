@@ -1,1 +1,56 @@
-/* Your custom styles */
+
+/*****/
+.login {
+    font-family: 'Josefin Sans', sans-serif;
+    background: #b88cd2;;
+    padding: 20px 0px;
+    height: 100vh;
+}
+h1{
+    font-weight:600;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform:uppercase;
+    text-align:center;
+    color:#444;
+}
+
+.inner-form{
+    background:#FFF;
+    padding:80px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+}
+
+label{
+    font-weight:400;
+    font-size:15px;
+}
+
+.form-control {
+    box-shadow: none;
+    outline: 0;
+    border-radius:0;
+    color: #565656;
+    font-size:14px;
+    padding:30px 10px;
+    margin-bottom:30px;
+    border: 1px solid #f2f2f2;
+    background: #f2f2f2;
+}
+
+
+.btn{
+    background: #b88cd2;
+    border: none;
+    border-radius: 0;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    width:100%;
+}
+div.centre {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

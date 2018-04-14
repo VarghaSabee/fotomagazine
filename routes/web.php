@@ -13,11 +13,15 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
+
+Route::get('orders/user','OrdersController@user')->name('orders.user');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::resource('clients', 'ClientsController');
+Route::resource('orders', 'OrdersController');
+
+Route::resource('services', 'ServicesController');

@@ -13,20 +13,20 @@ class AdminLoginController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest:adminss', ['except' => ['logout']]);
+        $this->middleware('guest:admin', ['except' => ['logout']]);
     }
 
     public function showLoginForm()
     {
-//        $adminss = new Admin();
-//        $adminss->name = "Admin";
-//        $adminss->password = Hash::make('adminadmin');
-//        $adminss->email = "adminss@gmail.com";
-//        $adminss->image = " ";
-//        $adminss->telephone = "380965656254";
+//        $admin = new Admin();
+//        $admin->name = "Admin";
+//        $admin->password = Hash::make('adminadmin');
+//        $admin->email = "admin@gmail.com";
+//        $admin->image = " ";
+//        $admin->telephone = "380965656254";
 //
-//        $adminss->save();
-        return view('adminss.login');
+//        $admin->save();
+        return view('admin.login');
     }
 
     public function login(Request $request)
@@ -38,9 +38,9 @@ class AdminLoginController extends Controller
         ]);
 
         // Attempt to log the user in
-        if (Auth::guard('adminss')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             // if successful, then redirect to their intended location
-            return redirect()->intended(route('adminss.dashboard'));
+            return redirect()->intended(route('admin.dashboard'));
         }
         // if unsuccessful, then redirect back to the login with the form data
         return redirect()->back()->withInput($request->only('email', 'remember'));
@@ -48,7 +48,7 @@ class AdminLoginController extends Controller
 
     public function logout()
     {
-        Auth::guard('adminss')->logout();
+        Auth::guard('admin')->logout();
         return redirect('/');
     }
 }

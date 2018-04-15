@@ -45,11 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
-        'adminss' => [
+        'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'adminss-api' => [
+        'admin-api' => [
             'driver' => 'token',
             'provider' => 'admins',
         ],

@@ -191,7 +191,7 @@
         <h2 class='login_title text-center'>Login</h2>
         <hr>
 
-        <form id="sign_in_adm" class="form-signin" method="POST" action="{{ route('adminss') }}">
+        <form id="sign_in_adm" class="form-signin" method="POST" action="{{ route('admin.login') }}">
             {{ csrf_field() }}
                 <span id="reauth-email" class="reauth-email"></span>
                 <p class="input_title">Email</p>

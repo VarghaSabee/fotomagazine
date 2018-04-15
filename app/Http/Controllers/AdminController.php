@@ -15,7 +15,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:adminss');
+        $this->middleware('auth:admin');
     }
     /**
      * show dashboard.
@@ -25,6 +25,6 @@ class AdminController extends Controller
     public function index()
     {
 
-        return view('adminss.index');
+        return view('admin.index');
     }
 }

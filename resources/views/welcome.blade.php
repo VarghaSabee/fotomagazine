@@ -10,7 +10,7 @@
     <title>ФОТО САЛОН-МАГАЗИН</title>
     <link rel="icon" href="{{asset('images/camera.png')}}">
     <!-- Bootstrap core CSS -->
-    <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{asset('css/scrolling-nav.css')}}" rel="stylesheet">
@@ -465,6 +465,9 @@
     -o-transform: scaleX(1.1); /* Для Opera */
     transform: scaleX(1.1);
 }
+    .nav-item btn-group{
+        background-color: red;
+    }
 </style>
 </head>
 <body id="page-top">
@@ -489,25 +492,34 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#contact">Контакти</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{{Auth::check() ? route('orders.user') : route('login')}}">Замовлення</a>
-                </li>
-                <!--
-            @if (Route::has('login'))
-                    @auth
-                        <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{ url('/home') }}">Home</a>
+
+                @guest
+                    <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                    @else
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="{{route('orders.create')}}">Замовити</a>
+                                <a class="dropdown-item" href="{{route('orders.user')}}">Мої замовлення</a>
+                                <a class="dropdown-item" href="{{route('orders.user')}}">Мій профіль</a>
+
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
-                        @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
-                            @endauth
-            @endif
-                        -->
+                        @endguest
             </ul>
         </div>
     </div>
@@ -516,7 +528,7 @@
 <header id="main" class="bg-primary text-white">
     <div class="container text-center">
         <h1>«ФОТО САЛОН-МАГАЗИН»</h1>
-        <a href="{{Auth::check() ? route('orders.user') : route('login')}}" class="btn btn-outline-warning waves-effect">Замовлення</a>
+        <a href="{{Auth::check() ? route('orders.create') : route('login')}}" class="btn btn-outline-warning waves-effect">Замовити</a>
     </div>
 </header>
 
@@ -542,46 +554,12 @@
             <div class="col-lg-8 mx-auto" style="margin-top: -100px">
                 <h1 class="text-center">Галерея</h1>
                 <div class="gallery">
+                    @foreach($images as $image)
                     <figure>
-                        <img src="https://images.unsplash.com/photo-1448814100339-234df1d4005d?crop=entropy&fit=crop&fm=jpg&h=400&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=600" alt="" />
-                        <figcaption>Daytona Beach <small>United States</small></figcaption>
+                        <img src="{{asset('images/') .'/gallery/'. $image}}" alt="" />
+                        <!--figcaption>Daytona Beach <small>United States</small></figcaption-->
                     </figure>
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1443890923422-7819ed4101c0?crop=entropy&fit=crop&fm=jpg&h=400&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=600" alt="" />
-                        <figcaption>Териберка, gorod Severomorsk <small>Russia</small></figcaption>
-                    </figure>
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?crop=entropy&fit=crop&fm=jpg&h=400&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=600" alt="" />
-                        <figcaption>
-                            Bad Pyrmont <small>Deutschland</small>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1439798060585-62ab242d7724?crop=entropy&fit=crop&fm=jpg&h=400&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=600" alt="" />
-                        <figcaption>Yellowstone National Park <small>United States</small></figcaption>
-                    </figure>
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1440339738560-7ea831bf5244?crop=entropy&fit=crop&fm=jpg&h=400&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=600" alt="" />
-                        <figcaption>Quiraing, Portree <small>United Kingdom</small></figcaption>
-                    </figure>
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1441906363162-903afd0d3d52?crop=entropy&fit=crop&fm=jpg&h=400&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=600" alt="" />
-                        <figcaption>Highlands <small>United States</small></figcaption>
-                    </figure>
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1448814100339-234df1d4005d?crop=entropy&fit=crop&fm=jpg&h=400&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=600" alt="" />
-                        <figcaption>Daytona Beach <small>United States</small></figcaption>
-                    </figure>
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1443890923422-7819ed4101c0?crop=entropy&fit=crop&fm=jpg&h=400&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=600" alt="" />
-                        <figcaption>Териберка, gorod Severomorsk <small>Russia</small></figcaption>
-                    </figure>
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?crop=entropy&fit=crop&fm=jpg&h=400&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=600" alt="" />
-                        <figcaption>
-                            Bad Pyrmont <small>Deutschland</small>
-                        </figcaption>
-                    </figure>
+                    @endforeach
 
                 </div>
             </div>

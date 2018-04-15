@@ -57,7 +57,9 @@ class OrdersController extends AppBaseController
      * @return Response
      */
     public function user(){
-        $orders = $this->ordersRepository->all();
+        $orders = Orders::where('u_id', Auth::user()->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         if (empty($orders)) {
             Flash::error('Orders not found');

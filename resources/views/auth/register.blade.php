@@ -2,7 +2,7 @@
 
 @section('content')
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
-    <div class="login" style="height: 140vh;">
+    <div class="login" style="height: 160vh;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3" style="margin: 0 auto; padding-top:8%;">
@@ -31,6 +31,17 @@
                                         @if ($errors->has('name'))
                                             <span class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>Телефон</label>
+                                    <div class="form-group">
+                                        <input type="text" name="telephone" id="password" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" placeholder="">
+                                        @if ($errors->has('telephone'))
+                                            <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('telephone') }}</strong>
                                     </span>
                                         @endif
                                     </div>

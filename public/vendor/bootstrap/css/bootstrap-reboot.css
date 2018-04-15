@@ -252,7 +252,7 @@ button,
 html [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button;
+ /* -webkit-appearance: button;*/
 }
 
 button::-moz-focus-inner,
@@ -321,7 +321,7 @@ progress {
 
 ::-webkit-file-upload-button {
   font: inherit;
-  -webkit-appearance: button;
+  /*-webkit-appearance: button;*/
 }
 
 output {

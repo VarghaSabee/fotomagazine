@@ -31,29 +31,31 @@
     </style>
     <header id="site-header">
         <div class="container" >
-            <h1>Замовляти</h1>
+            <h1>Зробити замовлення</h1>
+            <h4>Виберіть розмір картинки</h4>
         </div>
     </header>
-    <div class="container" style="min-height: 80vh;">
+    <section class="container" style="min-height: 80vh;)">
         <div class="row">
-            <div class="col-lg-12">
-                <form action="" class="form" data-cesta-feira-form>
-                    <div class="form-group">
-                        <input type="number" min="1" value="1" class="form-control" name="quantity" data-cesta-feira-attribute placeholder="Quantity">
-                    </div>
-                    <div class="form-group">
-                        <label>Виберіть формат картинки</label>
-                        <select class="service form-control" style="height: 2.5em" name="observations" data-cesta-feira-attribute required>
+            <div class="col-lg-12" style="background: url('{{asset('images/green.jpg')}}';">
+                <form action="" class="form-inline" data-cesta-feira-form>
+                    <label class="sr-only" for="inlineFormInputGroup">Виберіть формат картинки</label>
+                    <div class="row" style="width: 100%; margin: 2%;">
+                        <span style="max-width: 15%;">
+                        <input id="colorful" type="number" min="1" max="100" value="1" class="form-control" name="quantity" data-cesta-feira-attribute placeholder="Quantity">
+                        </span>
+                        <select style="width:70%; height: 2.5em; border: 1px solid #eeeeee;" class="form-control form-control-lg service" id="inlineFormInputGroup" name="observations" data-cesta-feira-attribute required>
                             @foreach($services as $service)
                                 <option value='{!! $service->toJson() !!}'>{{$service->format}}</option>
                             @endforeach
                         </select>
-                    </div>
+
                     <input type="hidden" value="{{$services[0]->format}}" id="product_name" name="product_name" data-cesta-feira-attribute="">
                     <input type="hidden" value="{{$services[0]->price}}" id="unity_price" name="unity_price" data-cesta-feira-attribute>
                     <input type="hidden" value="{{$services[0]->id}}" id="item_id" data-cesta-feira-item-id />
                     <input type="hidden" value="format" name="item_type" data-cesta-feira-attribute>
-                    <input type="submit" class="btnadd btn btn-primary" value="Add to Cart"/>
+                    <input style="width: 15%; margin-left: auto;" type="submit" class="btn btn-primary" value="Додати в кошик"/>
+                    </div>
                 </form>
             </div>
         </div>
@@ -63,10 +65,10 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">Total</th>
+                        <th>Продукт</th>
+                        <th>Кількість</th>
+                        <th class="text-center">Ціна</th>
+                        <th class="text-center">Всього</th>
                         <th> </th>
                     </tr>
                     </thead>
@@ -74,16 +76,16 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td><a href="javascript:;" class="btn btn-danger" data-cesta-feira-clear-basket>Clear Cart</a></td>
+                        <td><a href="javascript:;" class="btn btn-danger" id="clearbasket" data-cesta-feira-clear-basket>Очистити кошик</a></td>
                         <td>  </td>
-                        <td>Total</td>
+                        <td>Всього</td>
                         <td class="text-right" id="total-value"><strong>0 грн</strong></td>
                         <td>  </td>
                     </tr>
                     </tfoot>
                 </table>
             </div>
-            <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom: 50px;">
                 <form id="store" action="{{ route('orders.store') }}" method="POST">
                     @csrf
                     <input class="btnadd btn btn-primary" value="Заказати" type="submit">
@@ -91,10 +93,13 @@
             </div>
         </div>
 
-    </div>
+    </section>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jStorage/0.4.12/jstorage.min.js"></script>
+    <script src="{{asset('js/bootstrap-number-input.js')}}"></script>
+
     <script src="{{asset('js/cesta-feira.js')}}"></script>
+
 
     <script type="application/javascript">
 
@@ -213,10 +218,18 @@
                     $hidden.val(JSON.stringify(getProducts()));
                     $(this).append($hidden);
                     $(this).append($("<input type='hidden' value='"+ $('#total-value').val() +"' name='summa'/>"));
+                    $('#clearbasket').click();
                     return true;
             });
 
         });
+
+
+            $('#after').bootstrapNumber();
+            $('#colorful').bootstrapNumber({
+                upClass: 'success',
+                downClass: 'danger'
+            });
         });
     </script>
 @endsection

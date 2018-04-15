@@ -66,7 +66,8 @@ class OrdersController extends AppBaseController
 
             return redirect(route('orders.index'));
         }
-        return view('orders.user_orders')->with('orders', $orders);
+        $services = Services::all()->keyBy('id');
+        return view('orders.user_orders',compact('orders','services'));
     }
     /**
      * Store a newly created Orders in storage.
@@ -161,6 +162,22 @@ class OrdersController extends AppBaseController
         Flash::success('Orders updated successfully.');
 
         return redirect(route('orders.index'));
+    }
+
+    public function updateStatus($id, UpdateOrdersRequest $request)
+    {
+        $orders = $this->ordersRepository->findWithoutFail($id);
+        if (empty($orders)) {
+            Flash::error('Orders not found');
+
+            return redirect(route('orders.index'));
+        }
+        $orders->status = 1;
+        $orders->save();
+
+        Flash::success('Orders updated successfully.');
+
+        return redirect()->back();
     }
 
     /**

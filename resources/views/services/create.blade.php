@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('admin.index')
 
 @section('content')
     <section class="content-header">
         <h1>
-            Services
+            Послуги
         </h1>
     </section>
     <div class="content">

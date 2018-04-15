@@ -32,10 +32,13 @@ Route::get('/test', 'GalleryController@getImages');
 
 
 Route::resource('orders', 'OrdersController');
+Route::post('orders/status/{id}', 'OrdersController@updateStatus')->name('orders.status');
 
 Route::resource('services', 'ServicesController');
 
 Route::resource('users', 'UsersController');
 Route::post('users/update{id}', 'UsersController@update')->name('users.update');
 Route::post('users/update/image', 'UsersController@updateImg')->name('users.image');
+
+Route::get('/gallery', 'GalleryController@index')->name('gallery');
 

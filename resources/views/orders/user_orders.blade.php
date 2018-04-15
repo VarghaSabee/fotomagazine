@@ -155,13 +155,13 @@
                     @foreach(explode(",", $order->services) as $item)
                                 <tr>
                                     <td>
-                                        Послуга {!! explode("|",$item)[0] !!}
+                                        Послуга {!! $services[explode("|",$item)[0]]->name . ' ' . $services[explode("|",$item)[0]]->format !!}
                                     </td>
                                     <td>
                                         {!! explode("|",$item)[1] !!}
                                     </td>
                                     <td>
-                                        {!! explode("|",$item)[1] * 50!!}
+                                        {!! $services[explode("|",$item)[0]]->price * explode("|",$item)[1]!!}
                                     </td>
                                 </tr>
                     @endforeach

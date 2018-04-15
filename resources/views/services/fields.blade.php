@@ -1,18 +1,18 @@
 <!-- Format Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('format', 'Format:') !!}
+    {!! Form::label('format', 'Формат:') !!}
     {!! Form::text('format', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Price Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('price', 'Price:') !!}
+    {!! Form::label('price', 'Ціна:') !!}
     {!! Form::text('price', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
+    {!! Form::label('name', 'Назва:') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 

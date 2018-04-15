@@ -1,29 +1,32 @@
-<table class="table table-responsive" id="users-table">
+<table class="table table-bordered" id="dataTable" style="width: 100%; max-width: 100%;" cellspacing="0">
     <thead>
-        <tr>
-            <th>Name</th>
+    <tr>
+        <th>Ім'я</th>
         <th>Email</th>
-        <th>Password</th>
-        <th>Remember Token</th>
-        <th>Telephone</th>
-        <th>Image</th>
-            <th colspan="3">Action</th>
-        </tr>
+        <th>Електронна пошта</th>
+        <th>Зображення</th>
+        <th>Дія</th>
+    </tr>
     </thead>
+    <tfoot>
+    <tr>
+        <th>Ім'я</th>
+        <th>Email</th>
+        <th>Електронна пошта</th>
+        <th>Зображення</th>
+        <th>Дія</th>
+    </tr>
+    </tfoot>
     <tbody>
     @foreach($users as $users)
         <tr>
             <td>{!! $users->name !!}</td>
             <td>{!! $users->email !!}</td>
-            <td>{!! $users->password !!}</td>
-            <td>{!! $users->remember_token !!}</td>
             <td>{!! $users->telephone !!}</td>
-            <td>{!! $users->image !!}</td>
+            <td><a href="{!! asset('images/users') . '/' . $users->image !!}">Фото</a></td>
             <td>
                 {!! Form::open(['route' => ['users.destroy', $users->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('users.show', [$users->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('users.edit', [$users->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}

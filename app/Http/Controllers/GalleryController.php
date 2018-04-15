@@ -17,4 +17,16 @@ class GalleryController extends Controller
         }
         return  $images;
     }
+
+    public function update(){
+        return redirect()->back();
+    }
+    public function delete(){
+        return redirect()->back();
+
+    }
+    public function index(){
+        return redirect()->back();
+
+    }
 }

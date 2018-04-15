@@ -23,6 +23,8 @@ class UsersController extends AppBaseController
     public function __construct(UsersRepository $usersRepo)
     {
         $this->usersRepository = $usersRepo;
+        $this->middleware('auth');
+        $this->middleware('auth:admin')->except('update','edit','updateImg');
     }
 
     /**

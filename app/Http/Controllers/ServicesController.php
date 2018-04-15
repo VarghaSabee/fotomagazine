@@ -18,6 +18,7 @@ class ServicesController extends AppBaseController
 
     public function __construct(ServicesRepository $servicesRepo)
     {
+        $this->middleware('auth:admin');
         $this->servicesRepository = $servicesRepo;
     }
 

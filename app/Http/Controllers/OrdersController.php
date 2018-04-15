@@ -23,6 +23,7 @@ class OrdersController extends AppBaseController
     {
         $this->ordersRepository = $ordersRepo;
         $this->middleware('auth');
+        $this->middleware('auth:admin')->except('create','store','destroy','user');
     }
 
     /**
@@ -94,7 +95,7 @@ class OrdersController extends AppBaseController
       $orders = $this->ordersRepository->create($order->toArray());
         Flash::success('Orders saved successfully.');
 
-        return redirect(route('orders.index'));
+        return redirect(route('orders.user'));
     //  return $orders . '   ' . $u_id;
     }
 

@@ -4,7 +4,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <style>
         .timeline {
             position: relative;

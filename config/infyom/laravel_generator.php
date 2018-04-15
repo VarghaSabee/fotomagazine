@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'templates'         => 'adminlte-templates',
+    'templates' => 'adminlte-templates',
 
     /*
     |--------------------------------------------------------------------------
@@ -122,7 +122,7 @@ return [
 
     'prefixes' => [
 
-        'route' => '',  // using admin will create route('admin.?.index') type routes
+        'route' => '',  // using adminss will create route('adminss.?.index') type routes
 
         'path' => '',
 

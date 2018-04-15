@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use App\Http\Controllers\GalleryController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,17 +15,16 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth:adminss');
     }
-
     /**
-     * Show the application dashboard.
+     * show dashboard.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
 
-        return view('welcome',['images' =>GalleryController::getImages() ]);
+        return view('adminss.index');
     }
 }

@@ -17,6 +17,14 @@ Route::get('orders/user','OrdersController@user')->name('orders.user');
 
 Auth::routes();
 
+Route::prefix('adminss')->group(function() {
+    Route::get('/login',
+        'Auth\AdminLoginController@showLoginForm')->name('adminss.login');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('adminss.login.submit');
+    Route::get('logout/', 'Auth\AdminLoginController@logout')->name('adminss.logout');
+    Route::get('/', 'AdminController@index')->name('adminss.dashboard');
+}) ;
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'GalleryController@getImages');
 

@@ -26,25 +26,33 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{route('index')}}">Головна</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{{ Auth::check() ? route('orders.user') : route('login') }}">Замовлення</a>
-                </li>
-            <!--
-            @if (Route::has('login'))
-                @auth
-                    <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{{ url('/home') }}">Home</a>
+                @guest
+                    <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                    @else
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{route('orders.create')}}">Замовити</a>
+                                <a class="dropdown-item" href="{{route('orders.user')}}">Мої замовлення</a>
+                                <a class="dropdown-item" href="{{route('users.edit',['id'=> Auth::user()->id])}}">Мій профіль</a>
+
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
-                        @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
-                            @endauth
-                    @endif
-                            -->
+                        @endguest
             </ul>
 
         </div>

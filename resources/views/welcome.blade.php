@@ -506,7 +506,7 @@
 
                             <a class="dropdown-item" href="{{route('orders.create')}}">Замовити</a>
                                 <a class="dropdown-item" href="{{route('orders.user')}}">Мої замовлення</a>
-                                <a class="dropdown-item" href="{{route('orders.user')}}">Мій профіль</a>
+                                <a class="dropdown-item" href="{{route('users.edit',['id'=> Auth::user()->id])}}">Мій профіль</a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

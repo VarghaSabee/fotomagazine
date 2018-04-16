@@ -573,7 +573,7 @@
         <h2 style="padding: 25px;">Контакти</h2>
         <div class="row">
                 <div class="col-lg-3 mx-auto">
-                    <p><i class="far fa-map" style="font-size:20px;"></i>  ул. А.Кошица 10/21, Ужгород</p>
+                    <p><i class="far fa-map" style="font-size:20px;"></i>  пл. Шандора Петефі 9, Ужгород</p>
                 </div>
             <div class="col-lg-3 mx-auto">
                 <p><i class="fas fa-phone" style="font-size:20px;"></i>  +380969604521</p>

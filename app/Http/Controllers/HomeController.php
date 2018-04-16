@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\GalleryController;
+use App\Models\Users;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,8 @@ class HomeController extends Controller
     public function index()
     {
 
-        return view('welcome',['images' =>GalleryController::getImages() ]);
+        dd(Users::all(););
+
+       // return view('welcome',['images' =>GalleryController::getImages() ]);
     }
 }

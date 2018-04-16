@@ -22,7 +22,7 @@ class OrdersController extends AppBaseController
     public function __construct(OrdersRepository $ordersRepo)
     {
         $this->ordersRepository = $ordersRepo;
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index','show','destroy','updateStatus','update','edit');
         $this->middleware('auth:admin')->except('create','store','destroy','user');
     }
 

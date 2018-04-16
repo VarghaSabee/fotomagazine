@@ -25,9 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        dd(Users::all());
-
-       // return view('welcome',['images' =>GalleryController::getImages() ]);
+        return view('welcome',['images' =>GalleryController::getImages() ]);
     }
 }
